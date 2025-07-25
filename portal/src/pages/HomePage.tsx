@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { ClipboardList, PlusCircle } from "lucide-react";
 import ShoppingListCard from "../components/ShoppingListCard";
+import AddShoppinglist from "../components/AddShoppinglist"
+
 import { buildShoppingList, type ShoppingList } from "../models/ShoppingList";
 import api from "../api/axios";
 import UserBadge from "../components/UserBadge";
@@ -8,23 +10,29 @@ import UserBadge from "../components/UserBadge";
 export default function HomePage() {
   const [lists, setLists] = useState<ShoppingList[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showAddList, setShowAddList] = useState(false)
+
 
   useEffect(() => {
-    const fetchLists = async () => {
-      try {
-        const response = await api.get(`/api/getUserLists`);
-        const rawLists = response.data;
-        const builtLists = rawLists.map((raw: any) => buildShoppingList(raw));
-        setLists(builtLists);
-      } catch (error) {
-        console.error("Failed to fetch shopping lists:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchLists();
   }, []);
+
+  const fetchLists = async () => {
+    try {
+      const response = await api.get(`/api/getUserLists`);
+      const rawLists = response.data;
+      const builtLists = rawLists.map((raw: any) => buildShoppingList(raw));
+      setLists(builtLists);
+    } catch (error) {
+      console.error("Failed to fetch shopping lists:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCreated = async () => {
+    await fetchLists()
+  }
 
   if (loading) {
     return (
@@ -46,7 +54,7 @@ export default function HomePage() {
         <button
           className="flex items-center gap-2 bg-green-600 text-white px-5 py-3 rounded-lg shadow hover:bg-green-700 transition"
           aria-label="Create new shopping list"
-          onClick={() => alert("Open modal or navigate to create new list")}
+          onClick={() => setShowAddList(true)}
         >
           <PlusCircle size={20} />
           New List
@@ -78,7 +86,13 @@ export default function HomePage() {
             <ShoppingListCard key={list.id} list={list} />
           ))}
         </section>
+
       )}
+      <div className="relative inline-block">
+        {showAddList && (
+          <AddShoppinglist onClose={() => setShowAddList(false)} onCreated={handleCreated} />
+        )}
+      </div>
     </main>
   );
 }

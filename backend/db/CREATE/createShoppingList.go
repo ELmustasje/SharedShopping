@@ -7,7 +7,7 @@ import (
 )
 
 func CreateShoppingList(list models.ShoppingList) error {
-	if result := db.DB.Create(list); result.Error != nil {
+	if result := db.DB.Create(&list); result.Error != nil {
 		return result.Error
 	}
 
@@ -15,4 +15,3 @@ func CreateShoppingList(list models.ShoppingList) error {
 
 	return nil
 }
-

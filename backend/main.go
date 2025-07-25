@@ -16,7 +16,7 @@ import (
 func main() {
 	// Initialize DB
 	db.InitDB()
-	//	db.CreateTestData()
+	db.CreateTestData()
 
 	// Setup router
 	router := gin.Default()
@@ -42,6 +42,7 @@ func main() {
 		protected.GET("/getList", GET.GetList)
 
 		protected.POST("/postItem", POST.PostItem)
+		protected.POST("/postList", POST.PostShoppingList)
 
 		protected.PUT("/putItem", PUT.PutItem)
 	}

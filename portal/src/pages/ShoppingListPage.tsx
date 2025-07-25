@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import AddItemForm from "../components/AddItemForm";
 import ItemRow from "../components/ItemRow";
 import { buildShoppingList, type ShoppingList } from "../models/ShoppingList";
 import api from "../api/axios";
-import { master_food_list } from "../assets/master_food_list";
 import UserBadge from "../components/UserBadge";
+import DropdownMenu from "../components/DropdownMenu";
+import AddItemForm from "../components/AddItemForm";
+import { master_food_list } from "../assets/master_food_list";
 
 export default function ShoppingListPage() {
   const { id } = useParams();
@@ -55,9 +56,46 @@ export default function ShoppingListPage() {
     <div className="max-w-3xl mx-auto p-6">
       <div className="bg-white rounded-2xl shadow-md p-6">
         <UserBadge />
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">
-          🛒 {list.name}
-        </h1>
+
+        <div className="flex justify-between items-center mb-4">
+          <h1 className="text-2xl font-bold text-gray-800">🛒 {list.name}</h1>
+
+          <div className="flex items-center space-x-2">
+            <AddItemForm listId={list.id} onAdd={handleAddItem} masterFoodList={master_food_list} />
+
+            <DropdownMenu
+              options={[
+                {
+                  label: "🧹 Delete Bought Items",
+                  onClick: async () => {
+                    await api.delete("/api/deleteBoughtItems", {
+                      params: { listId: list.id },
+                    });
+                    fetchList();
+                  },
+                },
+                {
+                  label: "✏️ Rename List",
+                  onClick: () => {
+                    const newName = prompt("Enter new list name:");
+                    if (newName) {
+                      api.put("/api/renameList", { id: list.id, name: newName }).then(fetchList);
+                    }
+                  },
+                },
+                {
+                  label: "Add Users",
+                  onClick: () => {
+                    const newName = prompt("Enter new list name:");
+                    if (newName) {
+                      api.put("/api/renameList", { id: list.id, name: newName }).then(fetchList);
+                    }
+                  },
+                },
+              ]}
+            />
+          </div>
+        </div>
 
         <ul className="mt-6 divide-y divide-gray-200">
           {list.items.length === 0 ? (

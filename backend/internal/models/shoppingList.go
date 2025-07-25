@@ -6,13 +6,15 @@ type ShoppingList struct {
 	Name string `json:"name"`
 
 	// Owner
-	OwnerID uint
-	Owner   User
+	OwnerID uint `gorm:"not null"`
+	Owner   User `gorm:"foreignKey:OwnerID;references:ID"`
 
-	// Shared users
+	// Shared users (many to many)
 	Users []User `gorm:"many2many:shopping_list_users;"`
 
 	// Items and custom items
 	Items       []Item
 	CustomItems []CustomItem
+
+	InviteToken string `json:"inviteToken"`
 }

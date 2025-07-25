@@ -11,6 +11,7 @@ export type ShoppingList = {
   users: User[];
   items: Item[];
   customItems: Item[];
+  inviteToken: string;
 };
 
 
@@ -23,5 +24,6 @@ export function buildShoppingList(raw: any): ShoppingList {
     users: (raw.Users || []).map(buildUser),
     items: (raw.Items || []).map(buildItem),
     customItems: (raw.CustomItems || []).map(buildItem),
+    inviteToken: raw.InviteToken,
   }
 }
