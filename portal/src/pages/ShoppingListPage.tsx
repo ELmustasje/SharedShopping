@@ -2,17 +2,20 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemRow from "../components/ItemRow";
 import { buildShoppingList, type ShoppingList } from "../models/ShoppingList";
-import api from "../api/axios";
+import api, { API_BASE } from "../api/axios";
 import UserBadge from "../components/UserBadge";
 import DropdownMenu from "../components/DropdownMenu";
 import AddItemForm from "../components/AddItemForm";
 import { master_food_list } from "../assets/master_food_list";
+import { PopupBox } from "../components/PopupBox";
 
 export default function ShoppingListPage() {
   const { id } = useParams();
   const [list, setList] = useState<ShoppingList | null>(null);
+  const [popupBox1, setPopupBox1] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [inviteToken, setInviteToken] = useState("");
 
   const fetchList = async () => {
     try {
@@ -35,6 +38,11 @@ export default function ShoppingListPage() {
   const handleAddItem = () => {
     fetchList()
   };
+
+  const handleCloseAddUser = () => {
+    setPopupBox1(false)
+    setInviteToken("")
+  }
 
   if (loading) {
     return (
@@ -66,16 +74,7 @@ export default function ShoppingListPage() {
             <DropdownMenu
               options={[
                 {
-                  label: "🧹 Delete Bought Items",
-                  onClick: async () => {
-                    await api.delete("/api/deleteBoughtItems", {
-                      params: { listId: list.id },
-                    });
-                    fetchList();
-                  },
-                },
-                {
-                  label: "✏️ Rename List",
+                  label: "Rename List",
                   onClick: () => {
                     const newName = prompt("Enter new list name:");
                     if (newName) {
@@ -85,16 +84,28 @@ export default function ShoppingListPage() {
                 },
                 {
                   label: "Add Users",
-                  onClick: () => {
-                    const newName = prompt("Enter new list name:");
-                    if (newName) {
-                      api.put("/api/renameList", { id: list.id, name: newName }).then(fetchList);
+                  onClick: async () => {
+                    try {
+                      const response = await api.get("/api/getInviteToken", { params: { listId: list.id } });
+                      if (response.data == "") {
+                        console.error("empty response")
+                        return
+                      }
+                      setInviteToken(response.data)
+                      setPopupBox1(true)
+                    } catch (error) {
+                      console.error("failed to get token")
                     }
-                  },
+                  }
                 },
               ]}
             />
           </div>
+          {popupBox1 && inviteToken && (
+            <PopupBox
+              content={`${API_BASE}/api/join/${inviteToken}`}
+              onClose={handleCloseAddUser} />
+          )}
         </div>
 
         <ul className="mt-6 divide-y divide-gray-200">
