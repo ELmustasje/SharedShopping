@@ -116,10 +116,9 @@ export default function HomePage() {
       </div>
       <div className="relative inline-block">
         {inviteToken && (
-          <PopupBoxWithButton content="test" buttonText="test2" onClose={handleCloseInvite} onClick={handleAcceptInvite} />
+          <PopupBoxWithButton content="You have gotten invite to a list" buttonText="Join" onClose={handleCloseInvite} onClick={handleAcceptInvite} />
         )}
       </div>
-
     </main>
   );
 }

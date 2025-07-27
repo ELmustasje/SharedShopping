@@ -16,7 +16,7 @@ export default function ShoppingListPage() {
   const [popupBox1, setPopupBox1] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [inviteToken, setInviteToken] = useState("");
+  const [inviteToken, setInviteToken] = useState<string | null>(null);
 
   const fetchList = async () => {
     try {
@@ -103,7 +103,7 @@ export default function ShoppingListPage() {
           </div>
           {popupBox1 && inviteToken && (
             <PopupBox
-              content={`${BASE_PATH}/join/${inviteToken}`}
+              content={`Share link: \n ${BASE_PATH}/join/${inviteToken}`}
               onClose={handleCloseAddUser} />
           )}
         </div>
