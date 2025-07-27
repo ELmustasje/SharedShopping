@@ -12,10 +12,11 @@ export default function HomePage() {
   const [lists, setLists] = useState<ShoppingList[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAddList, setShowAddList] = useState(false)
-  const [inviteToken, setInviteToken] = useState("wadaw")
+  const [inviteToken, setInviteToken] = useState<string | null>(null)
 
 
   useEffect(() => {
+    setInviteToken(localStorage.getItem("invite_token"))
     fetchLists();
   }, []);
 
@@ -34,6 +35,24 @@ export default function HomePage() {
 
   const handleCreated = async () => {
     await fetchLists()
+  }
+
+  const handleCloseInvite = async () => {
+    localStorage.removeItem("invite_token");
+    setInviteToken(null)
+  }
+
+  const handleAcceptInvite = async () => {
+    try {
+      await api.put(`api/putJoin`, { invite_token: localStorage.getItem("invite_token") })
+      fetchLists()
+    } catch (error) {
+      console.error("Failed to put list invite")
+    } finally {
+      handleCloseInvite()
+    }
+
+
   }
 
   if (loading) {
@@ -97,7 +116,7 @@ export default function HomePage() {
       </div>
       <div className="relative inline-block">
         {inviteToken && (
-          <PopupBoxWithButton content="test" buttonText="test2" onClose={() => setInviteToken("")} onClick={() => setInviteToken("")} />
+          <PopupBoxWithButton content="test" buttonText="test2" onClose={handleCloseInvite} onClick={handleAcceptInvite} />
         )}
       </div>
 

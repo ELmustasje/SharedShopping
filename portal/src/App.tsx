@@ -9,7 +9,8 @@ import UnauthorizedPage from "./pages/ERROR/UnauthorizedPage";
 import LoginRequiredPage from "./pages/ERROR/LoginRequiredPage";
 import NotFoundPage from "./pages/ERROR/NotFoundPage";
 import { UserContext } from "./contexts/userContext.tsx";
-import { buildUser, type User } from "./models/User"
+import { type User } from "./models/User"
+import InviteRedirect from "./utils/InviteRedirect.tsx";
 
 function NavigatorSetter() {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/unauthorized" element={<UnauthorizedPage />} />
           <Route path="/login-required" element={<LoginRequiredPage />} />
+          <Route path="/join/:token" element={<InviteRedirect />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>

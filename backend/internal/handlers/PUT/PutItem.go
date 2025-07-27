@@ -1,7 +1,6 @@
 package PUT
 
 import (
-	"fmt"
 	"net/http"
 	"thomas-barth/MyGroceries/db/UPDATE"
 	"thomas-barth/MyGroceries/internal/models"
@@ -11,7 +10,6 @@ import (
 
 func PutItem(c *gin.Context) {
 	var updatedItem models.Item
-	fmt.Println("called")
 
 	// Parse JSON body
 	if err := c.ShouldBindJSON(&updatedItem); err != nil {

@@ -8,6 +8,7 @@ import DropdownMenu from "../components/DropdownMenu";
 import AddItemForm from "../components/AddItemForm";
 import { master_food_list } from "../assets/master_food_list";
 import { PopupBox } from "../components/PopupBox";
+import { BASE_PATH } from "../assets/basePath";
 
 export default function ShoppingListPage() {
   const { id } = useParams();
@@ -102,7 +103,7 @@ export default function ShoppingListPage() {
           </div>
           {popupBox1 && inviteToken && (
             <PopupBox
-              content={`${API_BASE}/api/join/${inviteToken}`}
+              content={`${BASE_PATH}/join/${inviteToken}`}
               onClose={handleCloseAddUser} />
           )}
         </div>
