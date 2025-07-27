@@ -6,11 +6,13 @@ import AddShoppinglist from "../components/AddShoppinglist"
 import { buildShoppingList, type ShoppingList } from "../models/ShoppingList";
 import api from "../api/axios";
 import UserBadge from "../components/UserBadge";
+import { PopupBoxWithButton } from "../components/PopupBoxWithButton";
 
 export default function HomePage() {
   const [lists, setLists] = useState<ShoppingList[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAddList, setShowAddList] = useState(false)
+  const [inviteToken, setInviteToken] = useState("wadaw")
 
 
   useEffect(() => {
@@ -93,6 +95,12 @@ export default function HomePage() {
           <AddShoppinglist onClose={() => setShowAddList(false)} onCreated={handleCreated} />
         )}
       </div>
+      <div className="relative inline-block">
+        {inviteToken && (
+          <PopupBoxWithButton content="test" buttonText="test2" onClose={() => setInviteToken("")} onClick={() => setInviteToken("")} />
+        )}
+      </div>
+
     </main>
   );
 }

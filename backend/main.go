@@ -44,6 +44,7 @@ func main() {
 
 		protected.POST("/postItem", POST.PostItem)
 		protected.POST("/postList", POST.PostShoppingList)
+		protected.POST("/postJoin", Post.PostJoinList)
 
 		protected.PUT("/putItem", PUT.PutItem)
 	}

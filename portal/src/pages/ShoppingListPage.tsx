@@ -70,7 +70,6 @@ export default function ShoppingListPage() {
 
           <div className="flex items-center space-x-2">
             <AddItemForm listId={list.id} onAdd={handleAddItem} masterFoodList={master_food_list} />
-
             <DropdownMenu
               options={[
                 {
