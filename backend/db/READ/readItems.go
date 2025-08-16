@@ -1,8 +1,8 @@
 package READ
 
 import (
-	"thomas-barth/MyGroceries/db"
-	"thomas-barth/MyGroceries/internal/models"
+	"thomas-barth/SharedShopping/db"
+	"thomas-barth/SharedShopping/internal/models"
 )
 
 func ReadItems() ([]models.Item, error) {

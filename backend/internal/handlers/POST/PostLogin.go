@@ -2,9 +2,9 @@ package POST
 
 import (
 	"net/http"
-	"thomas-barth/MyGroceries/db"
-	"thomas-barth/MyGroceries/internal/auth"
-	"thomas-barth/MyGroceries/internal/models"
+	"thomas-barth/SharedShopping/db"
+	"thomas-barth/SharedShopping/internal/auth"
+	"thomas-barth/SharedShopping/internal/models"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"

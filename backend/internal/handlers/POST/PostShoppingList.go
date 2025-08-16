@@ -2,8 +2,8 @@ package POST
 
 import (
 	"net/http"
-	"thomas-barth/MyGroceries/db/CREATE"
-	"thomas-barth/MyGroceries/internal/models"
+	"thomas-barth/SharedShopping/db/CREATE"
+	"thomas-barth/SharedShopping/internal/models"
 
 	"github.com/gin-gonic/gin"
 )

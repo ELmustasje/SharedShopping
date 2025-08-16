@@ -2,7 +2,7 @@ package GET
 
 import (
 	"net/http"
-	"thomas-barth/MyGroceries/db/READ"
+	"thomas-barth/SharedShopping/db/READ"
 
 	"github.com/gin-gonic/gin"
 )

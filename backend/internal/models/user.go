@@ -2,8 +2,8 @@ package models
 
 type User struct {
 	ID       uint   `gorm:"primaryKey"`
-	Username string `gorm:"uniqueIndex" json:"username"`
-	Password string `json:"-"`
+	Username string `gorm:"size:255;uniqueIndex" json:"username"`
+	Password string `gorm:"size:255" json:"password"`
 
 	// Owned lists
 	OwnedLists []ShoppingList `gorm:"foreignKey:OwnerID"`

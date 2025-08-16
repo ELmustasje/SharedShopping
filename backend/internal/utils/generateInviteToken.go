@@ -2,8 +2,8 @@ package utils
 
 import (
 	"math/rand"
-	"thomas-barth/MyGroceries/db/UPDATE"
-	"thomas-barth/MyGroceries/internal/models"
+	"thomas-barth/SharedShopping/db/UPDATE"
+	"thomas-barth/SharedShopping/internal/models"
 	"time"
 )
 

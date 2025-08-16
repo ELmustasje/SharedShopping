@@ -2,8 +2,8 @@ package PUT
 
 import (
 	"net/http"
-	"thomas-barth/MyGroceries/db/UPDATE"
-	"thomas-barth/MyGroceries/internal/models"
+	"thomas-barth/SharedShopping/db/UPDATE"
+	"thomas-barth/SharedShopping/internal/models"
 
 	"github.com/gin-gonic/gin"
 )

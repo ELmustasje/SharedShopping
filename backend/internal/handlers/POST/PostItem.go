@@ -4,8 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"slices"
-	"thomas-barth/MyGroceries/db/CREATE"
-	"thomas-barth/MyGroceries/internal/models"
+	"thomas-barth/SharedShopping/db/CREATE"
+	"thomas-barth/SharedShopping/internal/models"
 )
 
 func PostItem(c *gin.Context) {

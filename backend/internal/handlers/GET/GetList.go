@@ -3,8 +3,8 @@ package GET
 import (
 	"net/http"
 	"strconv"
-	"thomas-barth/MyGroceries/db"
-	"thomas-barth/MyGroceries/internal/models"
+	"thomas-barth/SharedShopping/db"
+	"thomas-barth/SharedShopping/internal/models"
 
 	"github.com/gin-gonic/gin"
 )

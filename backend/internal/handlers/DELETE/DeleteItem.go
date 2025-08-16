@@ -2,7 +2,7 @@ package DELETE
 
 import (
 	"net/http"
-	"thomas-barth/MyGroceries/db/DELETE"
+	"thomas-barth/SharedShopping/db/DELETE"
 
 	"github.com/gin-gonic/gin"
 )
@@ -27,4 +27,3 @@ func DeleteItemsByIds(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"status": "Items deleted", "count": len(ids)})
 }
-

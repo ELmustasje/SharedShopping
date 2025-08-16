@@ -3,7 +3,7 @@ package PUT
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"thomas-barth/MyGroceries/db/UPDATE"
+	"thomas-barth/SharedShopping/db/UPDATE"
 )
 
 type JoinRequest struct {

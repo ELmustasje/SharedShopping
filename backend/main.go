@@ -1,11 +1,13 @@
 package main
 
 import (
-	"thomas-barth/MyGroceries/db"
-	"thomas-barth/MyGroceries/internal/auth"
-	"thomas-barth/MyGroceries/internal/handlers/GET"
-	"thomas-barth/MyGroceries/internal/handlers/POST"
-	"thomas-barth/MyGroceries/internal/handlers/PUT"
+	"fmt"
+	"thomas-barth/SharedShopping/db"
+	//"thomas-barth/SharedShopping/db/dbUtils"
+	"thomas-barth/SharedShopping/internal/auth"
+	"thomas-barth/SharedShopping/internal/handlers/GET"
+	"thomas-barth/SharedShopping/internal/handlers/POST"
+	"thomas-barth/SharedShopping/internal/handlers/PUT"
 
 	"time"
 
@@ -14,9 +16,10 @@ import (
 )
 
 func main() {
+	fmt.Println("Starting backend")
 	// Initialize DB
 	db.InitDB()
-	//db.CreateTestData()
+	//dbUtils.CreateTestData()
 
 	// Setup router
 	router := gin.Default()

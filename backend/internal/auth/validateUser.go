@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"thomas-barth/MyGroceries/db/READ"
+	"thomas-barth/SharedShopping/db/READ"
 
 	"golang.org/x/crypto/bcrypt"
 )

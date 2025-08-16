@@ -1,8 +1,8 @@
 package UPDATE
 
 import (
-	"thomas-barth/MyGroceries/db"
-	"thomas-barth/MyGroceries/internal/models"
+	"thomas-barth/SharedShopping/db"
+	"thomas-barth/SharedShopping/internal/models"
 )
 
 func UpdateListWithNewUser(userID uint, inviteToken string) error {

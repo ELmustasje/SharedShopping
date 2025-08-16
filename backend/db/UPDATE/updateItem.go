@@ -1,8 +1,8 @@
 package UPDATE
 
 import (
-	"thomas-barth/MyGroceries/db"
-	"thomas-barth/MyGroceries/internal/models"
+	"thomas-barth/SharedShopping/db"
+	"thomas-barth/SharedShopping/internal/models"
 )
 
 func UpdateItemByID(id uint, item models.Item) error {

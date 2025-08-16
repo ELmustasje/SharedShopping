@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"thomas-barth/MyGroceries/db/READ"
+	"thomas-barth/SharedShopping/db/READ"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
