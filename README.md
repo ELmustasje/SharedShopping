@@ -18,7 +18,7 @@
 ## 🏗️ Tech Stack  
 
 - **Frontend:** React (TypeScript), Tailwind CSS, React Router, Axios  
-- **Backend:** Go (Gin), JWT Authentication, Database (PostgreSQL/MySQL)  
+- **Backend:** Go (Gin), JWT Authentication, Database (MySQL)  
 - **Other:** Background jobs for automatic cleanup  
 
 ---
