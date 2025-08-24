@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"thomas-barth/SharedShopping/db"
-	//"thomas-barth/SharedShopping/db/dbUtils"
+
 	"thomas-barth/SharedShopping/internal/auth"
 	"thomas-barth/SharedShopping/internal/handlers/GET"
 	"thomas-barth/SharedShopping/internal/handlers/POST"
@@ -13,9 +13,14 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println("⚠️ No .env file found, falling back to system env")
+	}
 	fmt.Println("Starting backend")
 	// Initialize DB
 	db.InitDB()

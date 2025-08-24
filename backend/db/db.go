@@ -3,6 +3,7 @@ package db
 import (
 	"fmt"
 	"log"
+	"os"
 	"thomas-barth/SharedShopping/internal/models"
 
 	"gorm.io/driver/mysql"
@@ -12,8 +13,8 @@ import (
 var DB *gorm.DB
 
 func InitDB() {
-	username := "thomas_barth"
-	password := "TB-bt1a@"
+	username := os.Getenv("DB_USER")
+	password := os.Getenv("DB_PASSWORD")
 	host := "127.0.0.1" // or "localhost"
 	port := "3306"      // MySQL default port
 	dbname := "SharedShoppingDB"

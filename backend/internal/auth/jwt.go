@@ -1,13 +1,14 @@
 package auth
 
 import (
+	"os"
 	"thomas-barth/SharedShopping/db/READ"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
 )
 
-var jwtKey = []byte("your-secret-key") // 🔐 move to .env in prod
+var jwtKey = os.Getenv("JWT_SECRET")
 
 type Claims struct {
 	UserID  uint   `json:"user_id"`
